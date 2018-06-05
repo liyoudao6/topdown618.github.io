@@ -39,11 +39,13 @@
                                                         if (park_res>100) {park_res=256-park_res;park_res= "园内有多余车                           辆</br>"+park_res+"辆" }
                                                         document.getElementById('A3').innerHTML='<h3 align="center">' +                            park_res + '</h3>';
                                                         //document.getElementById('A4').innerHTML='';
+                                                  alert("200 ok")
                                                         window.setTimeout(myloadXML,500)
                                                 }
                                         else
                                                 {
                                                         // alert("Problem retrieving XML data:" + xmlhttp.statusText);
+                                                  alert("not ok ")
                                                          window.setTimeout(myloadXML,500)
                                                 }
                                 }
@@ -62,6 +64,6 @@
                                 }
 
                         }
-                        alert("dRUNNEDh")
+                        
                         loadXMLDoc('http://holysite.cn:10000/cgi-bin/getpark_raw.cgi');
                         window.setTimeout(myloadXML,500)
