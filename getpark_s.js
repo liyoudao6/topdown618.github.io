@@ -62,5 +62,6 @@
                                 }
 
                         }
+                        alert("dRUNNEDh")
                         loadXMLDoc('http://holysite.cn:10000/cgi-bin/getpark_raw.cgi');
                         window.setTimeout(myloadXML,500)
