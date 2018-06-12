@@ -91,7 +91,7 @@ Linux:
 
 kernel
 
-profiling
+profiling : oprofile  ,perf/systemtap/dtrace
 
 zabbix, Nagios
 
