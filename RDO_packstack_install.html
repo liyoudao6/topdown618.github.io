@@ -1,0 +1,291 @@
+https://www.rdoproject.org/install/packstack/<br />
+<br />
+<br />
+<br />
+1.systemctl disable NetworkManager<br />
+ systemctl stop NetworkManager<br />
+ <br />
+ <br />
+ 2. add repo<br />
+  yum install -y centos-release-openstack-queens<br />
+yum-config-manager --enable openstack-queens<br />
+<br />
+<br />
+3.yum install -y openstack-packstack<br />
+<br />
+<br />
+4.(jump to step 6 to avoid fail)packstack --allinone<br />
+<br />
+5.<br />
+ERROR:<br />
+[root@localhost yum.repos.d]# packstack --allinone<br />
+Welcome to the Packstack setup utility<br />
+<br />
+The installation log file is available at: /var/tmp/packstack/20180611-113818-YSOyNy/openstack-setup.log<br />
+<br />
+Installing:<br />
+Clean Up                                             [ DONE ]<br />
+Discovering ip protocol version                      [ DONE ]<br />
+Setting up ssh keys                                  [ DONE ]<br />
+Preparing servers                                    [ DONE ]<br />
+Pre installing Puppet and discovering hosts' details [ DONE ]<br />
+Preparing pre-install entries                        [ DONE ]<br />
+Setting up CACERT                                    [ DONE ]<br />
+Preparing AMQP entries                               [ DONE ]<br />
+Preparing MariaDB entries                            [ DONE ]<br />
+Fixing Keystone LDAP config parameters to be undef if empty[ DONE ]<br />
+Preparing Keystone entries                           [ DONE ]<br />
+Preparing Glance entries                             [ DONE ]<br />
+Checking if the Cinder server has a cinder-volumes vg[ DONE ]<br />
+Preparing Cinder entries                             [ DONE ]<br />
+Preparing Nova API entries                           [ DONE ]<br />
+Creating ssh keys for Nova migration                 [ DONE ]<br />
+Gathering ssh host keys for Nova migration           [ DONE ]<br />
+Preparing Nova Compute entries                       [ DONE ]<br />
+Preparing Nova Scheduler entries                     [ DONE ]<br />
+Preparing Nova VNC Proxy entries                     [ DONE ]<br />
+Preparing OpenStack Network-related Nova entries     [ DONE ]<br />
+Preparing Nova Common entries                        [ DONE ]<br />
+Preparing Neutron LBaaS Agent entries                [ DONE ]<br />
+Preparing Neutron API entries                        [ DONE ]<br />
+Preparing Neutron L3 entries                         [ DONE ]<br />
+Preparing Neutron L2 Agent entries                   [ DONE ]<br />
+Preparing Neutron DHCP Agent entries                 [ DONE ]<br />
+Preparing Neutron Metering Agent entries             [ DONE ]<br />
+Checking if NetworkManager is enabled and running    [ DONE ]<br />
+Preparing OpenStack Client entries                   [ DONE ]<br />
+Preparing Horizon entries                            [ DONE ]<br />
+Preparing Swift builder entries                      [ DONE ]<br />
+Preparing Swift proxy entries                        [ DONE ]<br />
+Preparing Swift storage entries                      [ DONE ]<br />
+Preparing Gnocchi entries                            [ DONE ]<br />
+Preparing Redis entries                              [ DONE ]<br />
+Preparing Ceilometer entries                         [ DONE ]<br />
+Preparing Aodh entries                               [ DONE ]<br />
+Preparing Puppet manifests                           [ DONE ]<br />
+Copying Puppet modules and manifests                 [ DONE ]<br />
+Applying 192.168.0.235_controller.pp<br />
+192.168.0.235_controller.pp:                         [ DONE ]<br />
+Applying 192.168.0.235_network.pp<br />
+192.168.0.235_network.pp:                            [ DONE ]<br />
+Applying 192.168.0.235_compute.pp<br />
+192.168.0.235_compute.pp:                         [ ERROR ]<br />
+Applying Puppet manifests                         [ ERROR ]<br />
+<br />
+ERROR : Error appeared during Puppet run: 192.168.0.235_compute.pp<br />
+Error: Execution of '/usr/bin/yum -d 0 -e 0 -y install openstack-nova-migration' returned 1: Error: Package: 1:openstack                           -nova-compute-17.0.4-1.el7.noarch (centos-openstack-queens)<br />
+You will find full trace in log /var/tmp/packstack/20180611-113818-YSOyNy/manifests/192.168.0.235_compute.pp.log<br />
+Please check log file /var/tmp/packstack/20180611-113818-YSOyNy/openstack-setup.log for more information<br />
+Additional information:<br />
+ * A new answerfile was created in: /root/packstack-answers-20180611-113819.txt<br />
+ * Time synchronization installation was skipped. Please note that unsynchronized time on server instances might be prob                           lem for some OpenStack components.<br />
+ * File /root/keystonerc_admin has been created on OpenStack client host 192.168.0.235. To use the command line tools yo                           u need to source the file.<br />
+ * To access the OpenStack Dashboard browse to http://192.168.0.235/dashboard .<br />
+Please, find your login credentials stored in the keystonerc_admin in your home directory.<br />
+[root@localhost yum.repos.d]# yum install openstack-nova-migration<br />
+Loaded plugins: fastestmirror, langpacks<br />
+Loading mirror speeds from cached hostfile<br />
+ * base: mirror.bit.edu.cn<br />
+ * extras: mirror.bit.edu.cn<br />
+ * updates: mirrors.neusoft.edu.cn<br />
+Resolving Dependencies<br />
+--> Running transaction check<br />
+---> Package openstack-nova-migration.noarch 1:17.0.4-1.el7 will be installed<br />
+--> Processing Dependency: openstack-nova-compute = 1:17.0.4-1.el7 for package: 1:openstack-nova-migration-17.0.4-1.el7.                           noarch<br />
+--> Running transaction check<br />
+---> Package openstack-nova-compute.noarch 1:17.0.4-1.el7 will be installed<br />
+--> Processing Dependency: qemu-kvm-rhev >= 2.9.0 for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+--> Processing Dependency: sg3_utils for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+--> Processing Dependency: python-libguestfs for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+--> Running transaction check<br />
+---> Package openstack-nova-compute.noarch 1:17.0.4-1.el7 will be installed<br />
+--> Processing Dependency: qemu-kvm-rhev >= 2.9.0 for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+---> Package python-libguestfs.x86_64 1:1.36.10-6.el7_5.2 will be installed<br />
+--> Processing Dependency: libguestfs = 1:1.36.10-6.el7_5.2 for package: 1:python-libguestfs-1.36.10-6.el7_5.2.x86_64<br />
+---> Package sg3_utils.x86_64 0:1.37-12.el7 will be installed<br />
+--> Running transaction check<br />
+---> Package libguestfs.x86_64 1:1.36.3-6.el7 will be updated<br />
+---> Package libguestfs.x86_64 1:1.36.10-6.el7_5.2 will be an update<br />
+--> Processing Dependency: libvirt-daemon-kvm >= 3.9.0-1 for package: 1:libguestfs-1.36.10-6.el7_5.2.x86_64<br />
+---> Package openstack-nova-compute.noarch 1:17.0.4-1.el7 will be installed<br />
+--> Processing Dependency: qemu-kvm-rhev >= 2.9.0 for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+--> Running transaction check<br />
+---> Package libvirt-daemon-kvm.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-kvm.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+--> Processing Dependency: libvirt-daemon-driver-storage = 3.9.0-14.el7_5.5 for package: libvirt-daemon-kvm-3.9.0-14.el7                           _5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-secret = 3.9.0-14.el7_5.5 for package: libvirt-daemon-kvm-3.9.0-14.el7_                           5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-qemu = 3.9.0-14.el7_5.5 for package: libvirt-daemon-kvm-3.9.0-14.el7_5.                           5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-nwfilter = 3.9.0-14.el7_5.5 for package: libvirt-daemon-kvm-3.9.0-14.el                           7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-nodedev = 3.9.0-14.el7_5.5 for package: libvirt-daemon-kvm-3.9.0-14.el7                           _5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-network = 3.9.0-14.el7_5.5 for package: libvirt-daemon-kvm-3.9.0-14.el7                           _5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-interface = 3.9.0-14.el7_5.5 for package: libvirt-daemon-kvm-3.9.0-14.e                           l7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon = 3.9.0-14.el7_5.5 for package: libvirt-daemon-kvm-3.9.0-14.el7_5.5.x86_64<br />
+---> Package openstack-nova-compute.noarch 1:17.0.4-1.el7 will be installed<br />
+--> Processing Dependency: qemu-kvm-rhev >= 2.9.0 for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+--> Running transaction check<br />
+---> Package libvirt-daemon.x86_64 0:3.2.0-14.el7 will be updated<br />
+--> Processing Dependency: libvirt-daemon = 3.2.0-14.el7 for package: libvirt-daemon-driver-storage-core-3.2.0-14.el7.x8                           6_64<br />
+--> Processing Dependency: libvirt-daemon = 3.2.0-14.el7 for package: libvirt-daemon-driver-lxc-3.2.0-14.el7.x86_64<br />
+--> Processing Dependency: libvirt-daemon = 3.2.0-14.el7 for package: libvirt-daemon-config-nwfilter-3.2.0-14.el7.x86_64<br />
+--> Processing Dependency: libvirt-daemon = 3.2.0-14.el7 for package: libvirt-3.2.0-14.el7.x86_64<br />
+--> Processing Dependency: libvirt-daemon = 3.2.0-14.el7 for package: libvirt-daemon-config-network-3.2.0-14.el7.x86_64<br />
+---> Package libvirt-daemon.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+--> Processing Dependency: libvirt-libs = 3.9.0-14.el7_5.5 for package: libvirt-daemon-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt.so.0(LIBVIRT_PRIVATE_3.9.0)(64bit) for package: libvirt-daemon-3.9.0-14.el7_5.5.x86_6                           4<br />
+--> Processing Dependency: libvirt.so.0(LIBVIRT_3.9.0)(64bit) for package: libvirt-daemon-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt.so.0(LIBVIRT_3.7.0)(64bit) for package: libvirt-daemon-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt.so.0(LIBVIRT_3.4.0)(64bit) for package: libvirt-daemon-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-admin.so.0(LIBVIRT_ADMIN_PRIVATE_3.9.0)(64bit) for package: libvirt-daemon-3.9.0-14.e                           l7_5.5.x86_64<br />
+---> Package libvirt-daemon-driver-interface.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-interface.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-network.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-network.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-nodedev.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-nodedev.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-nwfilter.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-nwfilter.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-qemu.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-qemu.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-secret.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-secret.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+--> Processing Dependency: libvirt-daemon-driver-storage-scsi = 3.9.0-14.el7_5.5 for package: libvirt-daemon-driver-stor                           age-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-storage-rbd = 3.9.0-14.el7_5.5 for package: libvirt-daemon-driver-stora                           ge-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-storage-mpath = 3.9.0-14.el7_5.5 for package: libvirt-daemon-driver-sto                           rage-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-storage-logical = 3.9.0-14.el7_5.5 for package: libvirt-daemon-driver-s                           torage-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-storage-iscsi = 3.9.0-14.el7_5.5 for package: libvirt-daemon-driver-sto                           rage-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-storage-gluster = 3.9.0-14.el7_5.5 for package: libvirt-daemon-driver-s                           torage-3.9.0-14.el7_5.5.x86_64<br />
+--> Processing Dependency: libvirt-daemon-driver-storage-disk = 3.9.0-14.el7_5.5 for package: libvirt-daemon-driver-stor                           age-3.9.0-14.el7_5.5.x86_64<br />
+---> Package openstack-nova-compute.noarch 1:17.0.4-1.el7 will be installed<br />
+--> Processing Dependency: qemu-kvm-rhev >= 2.9.0 for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+--> Running transaction check<br />
+---> Package libvirt.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+--> Processing Dependency: libvirt-client = 3.9.0-14.el7_5.5 for package: libvirt-3.9.0-14.el7_5.5.x86_64<br />
+---> Package libvirt-daemon-config-network.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-config-network.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-config-nwfilter.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-config-nwfilter.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-lxc.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-lxc.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage-core.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage-core.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage-disk.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage-disk.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage-gluster.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage-gluster.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage-iscsi.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage-iscsi.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage-logical.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage-logical.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage-mpath.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage-mpath.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage-rbd.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage-rbd.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-daemon-driver-storage-scsi.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-daemon-driver-storage-scsi.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-libs.x86_64 0:3.2.0-14.el7 will be updated<br />
+--> Processing Dependency: libvirt-libs = 3.2.0-14.el7 for package: libvirt-devel-3.2.0-14.el7.x86_64<br />
+---> Package libvirt-libs.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package openstack-nova-compute.noarch 1:17.0.4-1.el7 will be installed<br />
+--> Processing Dependency: qemu-kvm-rhev >= 2.9.0 for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+--> Running transaction check<br />
+---> Package libvirt-client.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-client.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package libvirt-devel.x86_64 0:3.2.0-14.el7 will be updated<br />
+---> Package libvirt-devel.x86_64 0:3.9.0-14.el7_5.5 will be an update<br />
+---> Package openstack-nova-compute.noarch 1:17.0.4-1.el7 will be installed<br />
+--> Processing Dependency: qemu-kvm-rhev >= 2.9.0 for package: 1:openstack-nova-compute-17.0.4-1.el7.noarch<br />
+--> Finished Dependency Resolution<br />
+Error: Package: 1:openstack-nova-compute-17.0.4-1.el7.noarch (centos-openstack-queens)<br />
+           Requires: qemu-kvm-rhev >= 2.9.0<br />
+ You could try using --skip-broken to work around the problem<br />
+ You could try running: rpm -Va --nofiles --nodigest<br />
+[root@localhost yum.repos.d]# <br />
+<br />
+<br />
+<br />
+<br />
+<br />
+6.yum-config-manager --add-repo 'http://mirror.centos.org/centos/7/virt/x86_64/kvm-common/' --nogpgcheck<br />
+add gpgcheck=0 in repo file<br />
+<br />
+<br />
+<br />
+7.packstack --allinone<br />
+<br />
+8.[root@localhost yum.repos.d]# packstack --allinone<br />
+Welcome to the Packstack setup utility<br />
+<br />
+The installation log file is available at: /var/tmp/packstack/20180611-124039-1nel5q/openstack-setup.log<br />
+<br />
+Installing:<br />
+Clean Up                                             [ DONE ]<br />
+Discovering ip protocol version                      [ DONE ]<br />
+Setting up ssh keys                                  [ DONE ]<br />
+Preparing servers                                    [ DONE ]<br />
+Pre installing Puppet and discovering hosts' details [ DONE ]<br />
+Preparing pre-install entries                        [ DONE ]<br />
+Setting up CACERT                                    [ DONE ]<br />
+Preparing AMQP entries                               [ DONE ]<br />
+Preparing MariaDB entries                            [ DONE ]<br />
+Fixing Keystone LDAP config parameters to be undef if empty[ DONE ]<br />
+Preparing Keystone entries                           [ DONE ]<br />
+Preparing Glance entries                             [ DONE ]<br />
+Checking if the Cinder server has a cinder-volumes vg[ DONE ]<br />
+Preparing Cinder entries                             [ DONE ]<br />
+Preparing Nova API entries                           [ DONE ]<br />
+Creating ssh keys for Nova migration                 [ DONE ]<br />
+Gathering ssh host keys for Nova migration           [ DONE ]<br />
+Preparing Nova Compute entries                       [ DONE ]<br />
+Preparing Nova Scheduler entries                     [ DONE ]<br />
+Preparing Nova VNC Proxy entries                     [ DONE ]<br />
+Preparing OpenStack Network-related Nova entries     [ DONE ]<br />
+Preparing Nova Common entries                        [ DONE ]<br />
+Preparing Neutron LBaaS Agent entries                [ DONE ]<br />
+Preparing Neutron API entries                        [ DONE ]<br />
+Preparing Neutron L3 entries                         [ DONE ]<br />
+Preparing Neutron L2 Agent entries                   [ DONE ]<br />
+Preparing Neutron DHCP Agent entries                 [ DONE ]<br />
+Preparing Neutron Metering Agent entries             [ DONE ]<br />
+Checking if NetworkManager is enabled and running    [ DONE ]<br />
+Preparing OpenStack Client entries                   [ DONE ]<br />
+Preparing Horizon entries                            [ DONE ]<br />
+Preparing Swift builder entries                      [ DONE ]<br />
+Preparing Swift proxy entries                        [ DONE ]<br />
+Preparing Swift storage entries                      [ DONE ]<br />
+Preparing Gnocchi entries                            [ DONE ]<br />
+Preparing Redis entries                              [ DONE ]<br />
+Preparing Ceilometer entries                         [ DONE ]<br />
+Preparing Aodh entries                               [ DONE ]<br />
+Preparing Puppet manifests                           [ DONE ]<br />
+Copying Puppet modules and manifests                 [ DONE ]<br />
+Applying 192.168.0.235_controller.pp<br />
+Testing if puppet apply is finished: 192.168.0.235_controller.pp  [ \ ]<br />
+Testing if puppet apply is finished: 192.168.0.235_controller.pp  [ \ ]<br />
+<br />
+<br />
+192.168.0.235_controller.pp:                         [ DONE ]<br />
+Applying 192.168.0.235_network.pp<br />
+192.168.0.235_network.pp:                            [ DONE ]<br />
+Applying 192.168.0.235_compute.pp<br />
+192.168.0.235_compute.pp:                            [ DONE ]<br />
+Applying Puppet manifests                            [ DONE ]<br />
+Finalizing                                           [ DONE ]<br />
+<br />
+ **** Installation completed successfully ******<br />
+<br />
+Additional information:<br />
+ * A new answerfile was created in: /root/packstack-answers-20180611-124040.txt<br />
+ * Time synchronization installation was skipped. Please note that unsynchronized time on server instances might be problem for some OpenStack components.<br />
+ * File /root/keystonerc_admin has been created on OpenStack client host 192.168.0.235. To use the command line tools you need to source the file.<br />
+ * To access the OpenStack Dashboard browse to http://192.168.0.235/dashboard .<br />
+Please, find your login credentials stored in the keystonerc_admin in your home directory.<br />
+ * The installation log file is available at: /var/tmp/packstack/20180611-124039-1nel5q/openstack-setup.log<br />
+ * The generated manifests are available at: /var/tmp/packstack/20180611-124039-1nel5q/manifests<br />
+[root@localhost yum.repos.d]#<br />
+<br />
+<br />
+<br />
+9.over<br />

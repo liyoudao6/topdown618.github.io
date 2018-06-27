@@ -1,32 +1,32 @@
-
-https://www.videohelp.com/software/recover-mp4-to-h264
-
-
-
-C:\dji>recover_mp4.exe DJI_0007.MOV --analyze
-Count    25, [            21 e1 d1] Size Min 0x1c12a, Avg 0x2b506, Max 0x42780
-Count    25, [            21 e1 e1] Size Min 0x1a61f, Avg 0x2afa7, Max 0x41ea2
-Count    25, [            21 e1 f1] Size Min 0x200e0, Avg 0x2cff5, Max 0x3ff34
-Count    26, [            25 b8 01] Size Min 0xbf311, Avg 0x13442d, Max 0x1a469b
-
-----------------------
-
-
-Now run the following command to start recovering:
-recover_mp4.exe corrupted_file result.h264 --noaudio --dji.avc
-
-Then use ffmpeg to mux the final file:
-ffmpeg.exe -r 24000/1001 -i result.h264 -c:v copy result.mov
-
-
-
-
-
-recover_mp4.exe corrupted_file result.h264 --noaudio --dji.avc
-
-it is said that i can open the .h264 file using VLC, but i failed,continue to convert using ffmepg, then it works with the final mov file
-
-
-$ /cygdrive/c/Users/Desktop/ffmpeg-20160422-git-268b5ae-win64-static/bin/ffmpeg.exe -i result.h264  -c:v copy result.mov
-
-
+<br />
+https://www.videohelp.com/software/recover-mp4-to-h264<br />
+<br />
+<br />
+<br />
+C:\dji>recover_mp4.exe DJI_0007.MOV --analyze<br />
+Count    25, [            21 e1 d1] Size Min 0x1c12a, Avg 0x2b506, Max 0x42780<br />
+Count    25, [            21 e1 e1] Size Min 0x1a61f, Avg 0x2afa7, Max 0x41ea2<br />
+Count    25, [            21 e1 f1] Size Min 0x200e0, Avg 0x2cff5, Max 0x3ff34<br />
+Count    26, [            25 b8 01] Size Min 0xbf311, Avg 0x13442d, Max 0x1a469b<br />
+<br />
+----------------------<br />
+<br />
+<br />
+Now run the following command to start recovering:<br />
+recover_mp4.exe corrupted_file result.h264 --noaudio --dji.avc<br />
+<br />
+Then use ffmpeg to mux the final file:<br />
+ffmpeg.exe -r 24000/1001 -i result.h264 -c:v copy result.mov<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+recover_mp4.exe corrupted_file result.h264 --noaudio --dji.avc<br />
+<br />
+it is said that i can open the .h264 file using VLC, but i failed,continue to convert using ffmepg, then it works with the final mov file<br />
+<br />
+<br />
+$ /cygdrive/c/Users/Desktop/ffmpeg-20160422-git-268b5ae-win64-static/bin/ffmpeg.exe -i result.h264  -c:v copy result.mov<br />
+<br />
+<br />

@@ -1,117 +1,117 @@
-0. dlink dsn1100 is a small 5 disk slot iSCSI network storage device, solid works.
-a small system and power inside.
-Linux inside with 4Giga eth port and 1 mgt port
-
-
-1.hardware
-
-iStor Version: 2.7.10.1
-
-GIGASTOR U-Boot 1.1.6  (Jun 24 2010 - 15:35:48),
-  Build: Release
-
-CPU:   MPC8245 Revision 1.4 at 199.999 MHz: 16 kB I-Cache 16 kB D-Cache
-dBlade: boardrev# = 3, serial# = 001000C0931001K5
-  Local Bus at 99.999 MHz
-I2C:   addr 7f: i2c speed set to 21
-ready
-DRAM:  63 MB
-Now running in RAM - U-Boot at: 03eab000 board_init_r@03eafb50
-FLASH:  2 MB
-NAND:  NAND device EC:DA 'NAND 256MiB 3,3V 8-bit' found
-256 MiB
-diag start address e200000, arc start addr e500000
-log start addr fb00000, max size 500000
-last entry fb00000
-env_relocate[252] offset = 0x409b000
-env_relocate[266] malloced ENV at 03e1ca60
-CFK env_relocate_spec gd->sector_addr:ffee0008 flash_addr->data:ffee0008
-crc returned=0x3a2a1627
-Partition=A gd->selector.active_boot_loader=0xffe10000
-addr 7f: i2c speed set to 21
-& get_version=03ecadac
-In:    serial
-Out:   serial
-Err:   serial
-misc_init_r():
-Do "i8k init" if blade fails here!
-i8k_reset_init():
-release the reset on the ASIC (0)
-FLASH:  2 MB
-setting the CSOR
-release the reset on PLLs and SATA ( 82 )
-release the System from reset ( 80 )
-Initializing the PCI Bus
-
-
-
-
-
-
-2.U-boot bootargs:
-Environment size: 870/65528 bytes
-I8000E> printenv
-part#=P001144
-serverip=1.1.1.1
-tftp_prefix=82xx/2.5.4.2/
-bootcmd=run mtd_boot
-bootdelay=5
-flashargs=setenv bootargs root=/dev/mtdblock1 rootfstype=jffs2 rw panic=1 sc_start=0x000A0000 sc_size=0x00030000
-mtdids=nand0=nand0
-mtdparts=mtdparts=nand0:2M@0M(kernel),62M@2M(rootfs)
-partition=nand0,0
-kernel_addr=1000000
-addip=setenv bootargs ${bootargs} ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:eth0:off console=ttyS0,${baudrate}
-flash_root=run flashargs;run addip;bootm ${kernel_addr}
-mtd_boot=fsload ${kernel_addr} uImage;i8k boot;i8k init;run flash_root
-initrd_version=2
-rootpath=/local1/sharedeblade
-baudrate=9600
-ethaddr=00:22:B0:E7:A6:09
-ethact=i82559#0
-netmask=255.255.255.0
-boardID=XC02000C
-boardrev#=3
-serial#=001000C0931001K5
-hostname=hn001000C0931001K5
-mfg_version=2.12
-ipaddr=127.0.0.1
-gatewayip=0.0.0.0
-stdin=serial
-stdout=serial
-stderr=serial
-
-Environment size: 870/65528 bytes
-I8000E>
-
-
-
-
-3.enter single user mode:
-I8000E> setenv flashargs setenv bootargs root=/dev/mtdblock1 rootfstype=jffs2 rw panic=1 sc_start=0x000A0000 sc_size=0x00030000 init=/bin/sh
-#next step seems unncecessary
-I8000E> setenv bootargs init=/bin/sh
-I8000E>saveenv
-
-4.reboot ,  it will enter infinite boot loop
-5.unplug cable,insert cable, power on
-
-6. get shell
-
-7.passwd root
-
-8.enter u-boot
-9.change bootargs back
-I8000E> setenv flashargs setenv bootargs root=/dev/mtdblock1 rootfstype=jffs2 rw panic=1 sc_start=0x000A0000 sc_size=0x00030000 
-I8000E> setenv bootargs 
-I8000E> saveenv
-10.unplug, plug in , power on
-
-11.log in as root
-
-
-
-
-12.mount nfs, get busybox
-
-13.to be continue
+0. dlink dsn1100 is a small 5 disk slot iSCSI network storage device, solid works.<br />
+a small system and power inside.<br />
+Linux inside with 4Giga eth port and 1 mgt port<br />
+<br />
+<br />
+1.hardware<br />
+<br />
+iStor Version: 2.7.10.1<br />
+<br />
+GIGASTOR U-Boot 1.1.6  (Jun 24 2010 - 15:35:48),<br />
+  Build: Release<br />
+<br />
+CPU:   MPC8245 Revision 1.4 at 199.999 MHz: 16 kB I-Cache 16 kB D-Cache<br />
+dBlade: boardrev# = 3, serial# = 001000C0931001K5<br />
+  Local Bus at 99.999 MHz<br />
+I2C:   addr 7f: i2c speed set to 21<br />
+ready<br />
+DRAM:  63 MB<br />
+Now running in RAM - U-Boot at: 03eab000 board_init_r@03eafb50<br />
+FLASH:  2 MB<br />
+NAND:  NAND device EC:DA 'NAND 256MiB 3,3V 8-bit' found<br />
+256 MiB<br />
+diag start address e200000, arc start addr e500000<br />
+log start addr fb00000, max size 500000<br />
+last entry fb00000<br />
+env_relocate[252] offset = 0x409b000<br />
+env_relocate[266] malloced ENV at 03e1ca60<br />
+CFK env_relocate_spec gd->sector_addr:ffee0008 flash_addr->data:ffee0008<br />
+crc returned=0x3a2a1627<br />
+Partition=A gd->selector.active_boot_loader=0xffe10000<br />
+addr 7f: i2c speed set to 21<br />
+& get_version=03ecadac<br />
+In:    serial<br />
+Out:   serial<br />
+Err:   serial<br />
+misc_init_r():<br />
+Do "i8k init" if blade fails here!<br />
+i8k_reset_init():<br />
+release the reset on the ASIC (0)<br />
+FLASH:  2 MB<br />
+setting the CSOR<br />
+release the reset on PLLs and SATA ( 82 )<br />
+release the System from reset ( 80 )<br />
+Initializing the PCI Bus<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+2.U-boot bootargs:<br />
+Environment size: 870/65528 bytes<br />
+I8000E> printenv<br />
+part#=P001144<br />
+serverip=1.1.1.1<br />
+tftp_prefix=82xx/2.5.4.2/<br />
+bootcmd=run mtd_boot<br />
+bootdelay=5<br />
+flashargs=setenv bootargs root=/dev/mtdblock1 rootfstype=jffs2 rw panic=1 sc_start=0x000A0000 sc_size=0x00030000<br />
+mtdids=nand0=nand0<br />
+mtdparts=mtdparts=nand0:2M@0M(kernel),62M@2M(rootfs)<br />
+partition=nand0,0<br />
+kernel_addr=1000000<br />
+addip=setenv bootargs ${bootargs} ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:eth0:off console=ttyS0,${baudrate}<br />
+flash_root=run flashargs;run addip;bootm ${kernel_addr}<br />
+mtd_boot=fsload ${kernel_addr} uImage;i8k boot;i8k init;run flash_root<br />
+initrd_version=2<br />
+rootpath=/local1/sharedeblade<br />
+baudrate=9600<br />
+ethaddr=00:22:B0:E7:A6:09<br />
+ethact=i82559#0<br />
+netmask=255.255.255.0<br />
+boardID=XC02000C<br />
+boardrev#=3<br />
+serial#=001000C0931001K5<br />
+hostname=hn001000C0931001K5<br />
+mfg_version=2.12<br />
+ipaddr=127.0.0.1<br />
+gatewayip=0.0.0.0<br />
+stdin=serial<br />
+stdout=serial<br />
+stderr=serial<br />
+<br />
+Environment size: 870/65528 bytes<br />
+I8000E><br />
+<br />
+<br />
+<br />
+<br />
+3.enter single user mode:<br />
+I8000E> setenv flashargs setenv bootargs root=/dev/mtdblock1 rootfstype=jffs2 rw panic=1 sc_start=0x000A0000 sc_size=0x00030000 init=/bin/sh<br />
+#next step seems unncecessary<br />
+I8000E> setenv bootargs init=/bin/sh<br />
+I8000E>saveenv<br />
+<br />
+4.reboot ,  it will enter infinite boot loop<br />
+5.unplug cable,insert cable, power on<br />
+<br />
+6. get shell<br />
+<br />
+7.passwd root<br />
+<br />
+8.enter u-boot<br />
+9.change bootargs back<br />
+I8000E> setenv flashargs setenv bootargs root=/dev/mtdblock1 rootfstype=jffs2 rw panic=1 sc_start=0x000A0000 sc_size=0x00030000 <br />
+I8000E> setenv bootargs <br />
+I8000E> saveenv<br />
+10.unplug, plug in , power on<br />
+<br />
+11.log in as root<br />
+<br />
+<br />
+<br />
+<br />
+12.mount nfs, get busybox<br />
+<br />
+13.to be continue<br />

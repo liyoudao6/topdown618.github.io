@@ -1,102 +1,102 @@
-DevOps tools
-
-敏捷开发:JIRA,
-
-自动化: ansible/Puppet/saltstack/  #Foreman/
-
-maven/Nexus
-
-CI:Jenkins 
-
-代码质量:SonarQube
-
-Git
-
-###################
-
-Virt:
-
-openstack
-
-                tripeO,RDO/Packstack,Fuel,raw
-
-docker openshift   kubernetes
-
-                docker:cgroup, namespace, chroot, https://weibo.com/p/1001603824282965777334
-
-mesos
-
-################
-
-Bigdata:
-
-scala
-
-kafka
-
-zookeeper
-
-hadoop deploy/cloudera
-
-Kylin
-
-Cassandra=>hbase
-
-redis  postgresql mongodb
-
-spark/spark streaming
-
-storm
-
- 
-
- ELK:ElasticSearch + LogStash + Kibana
- Fluentd
-
-################
-
-Java/js:
-
-spring
-
-struts
-
-hibernate/mybatis
-
- 
-
-html5/css3
-
-jquery/angularjs
-
-#extjs  reactJS 
-
-bootstrap
-
-Ionic
-
- 
-
-###############
-
-python:
-
-robot 
-
- 
-
-#############
-
-Linux:
-
-kernel
-
-profiling : oprofile  ,perf/systemtap/dtrace
-
-zabbix, Nagios
-
-keepalived
-
-DRDB
-
-ceph
+DevOps tools<br />
+<br />
+敏捷开发:JIRA,<br />
+<br />
+自动化: ansible/Puppet/saltstack/  #Foreman/<br />
+<br />
+maven/Nexus<br />
+<br />
+CI:Jenkins <br />
+<br />
+代码质量:SonarQube<br />
+<br />
+Git<br />
+<br />
+###################<br />
+<br />
+Virt:<br />
+<br />
+openstack<br />
+<br />
+                tripeO,RDO/Packstack,Fuel,raw<br />
+<br />
+docker openshift   kubernetes<br />
+<br />
+                docker:cgroup, namespace, chroot, https://weibo.com/p/1001603824282965777334<br />
+<br />
+mesos<br />
+<br />
+################<br />
+<br />
+Bigdata:<br />
+<br />
+scala<br />
+<br />
+kafka<br />
+<br />
+zookeeper<br />
+<br />
+hadoop deploy/cloudera<br />
+<br />
+Kylin<br />
+<br />
+Cassandra=>hbase<br />
+<br />
+redis  postgresql mongodb<br />
+<br />
+spark/spark streaming<br />
+<br />
+storm<br />
+<br />
+ <br />
+<br />
+ ELK:ElasticSearch + LogStash + Kibana<br />
+ Fluentd<br />
+<br />
+################<br />
+<br />
+Java/js:<br />
+<br />
+spring<br />
+<br />
+struts<br />
+<br />
+hibernate/mybatis<br />
+<br />
+ <br />
+<br />
+html5/css3<br />
+<br />
+jquery/angularjs<br />
+<br />
+#extjs  reactJS <br />
+<br />
+bootstrap<br />
+<br />
+Ionic<br />
+<br />
+ <br />
+<br />
+###############<br />
+<br />
+python:<br />
+<br />
+robot <br />
+<br />
+ <br />
+<br />
+#############<br />
+<br />
+Linux:<br />
+<br />
+kernel<br />
+<br />
+profiling : oprofile  ,perf/systemtap/dtrace<br />
+<br />
+zabbix, Nagios<br />
+<br />
+keepalived<br />
+<br />
+DRDB<br />
+<br />
+ceph<br />

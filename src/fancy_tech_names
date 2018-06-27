@@ -1,0 +1,102 @@
+DevOps tools
+
+敏捷开发:JIRA,
+
+自动化: ansible/Puppet/saltstack/  #Foreman/
+
+maven/Nexus
+
+CI:Jenkins 
+
+代码质量:SonarQube
+
+Git
+
+###################
+
+Virt:
+
+openstack
+
+                tripeO,RDO/Packstack,Fuel,raw
+
+docker openshift   kubernetes
+
+                docker:cgroup, namespace, chroot, https://weibo.com/p/1001603824282965777334
+
+mesos
+
+################
+
+Bigdata:
+
+scala
+
+kafka
+
+zookeeper
+
+hadoop deploy/cloudera
+
+Kylin
+
+Cassandra=>hbase
+
+redis  postgresql mongodb
+
+spark/spark streaming
+
+storm
+
+ 
+
+ ELK:ElasticSearch + LogStash + Kibana
+ Fluentd
+
+################
+
+Java/js:
+
+spring
+
+struts
+
+hibernate/mybatis
+
+ 
+
+html5/css3
+
+jquery/angularjs
+
+#extjs  reactJS 
+
+bootstrap
+
+Ionic
+
+ 
+
+###############
+
+python:
+
+robot 
+
+ 
+
+#############
+
+Linux:
+
+kernel
+
+profiling : oprofile  ,perf/systemtap/dtrace
+
+zabbix, Nagios
+
+keepalived
+
+DRDB
+
+ceph
